@@ -1,0 +1,21 @@
+---
+- name: setup
+  hosts: localhost
+  become: yes
+  remote_user: skower
+
+  pre_tasks:
+      - name: Update all packages
+        apt:
+            update_cache: yes
+      - name: Upgrade all packages
+        apt:
+            upgrade: dist
+      - name: Autoclean and Autoremove dependencies
+        apt:
+            autoremove: yes
+            autoclean: yes
+
+  tasks:
+      - include: tasks/apps.yml
+      - include: tasks/dotfiles.yml

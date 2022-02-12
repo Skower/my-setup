@@ -1,0 +1,17 @@
+---
+- name: Cloning dotfiles
+        git:
+            repo: 'https://github.com/Skower/.dotfiles.git'
+            dest: "/home/skower/.dotfiles"
+            clone: yes
+            accept_hostkey: yes
+            update: yes
+            version: master
+        tags:
+            - install
+            - dotfile
+- name: Install Dotfiles
+        shell: cd $HOME/.dotfiles && ./install
+        tags:
+            - install
+            - dotfiles
