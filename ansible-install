@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Install Ansible
+sudo apt install software-properties-common -y
+sudo apt install ansible -y

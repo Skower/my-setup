@@ -1,0 +1,37 @@
+---
+- name: setup
+  hosts: localhost
+  become: yes
+  remote_user: skower
+
+  pre_tasks:
+      - name: Update all packages
+        apt:
+            update_cache: yes
+      - name: Upgrade all packages
+        apt:
+            upgrade: dist
+      - name: Autoclean and Autoremove dependencies
+        apt:
+            autoremove: yes
+            autoclean: yes
+
+  tasks:
+      - name: Install apps
+        apt:
+            - name: ["stow", "tmux", "vim", "i3", "tmux", "zsh"]
+        tags:
+             - install
+             - apps
+      
+      - name: Cloning dotfiles
+        git:
+            repo: 'https://github.com/Skower/.dotfiles.git'
+            dest: "/home/skower/.dotfiles"
+            clone: yes
+            accept_hostkey: yes
+            update: yes
+            version: master
+        tags:
+            - install
+            - dotfile
