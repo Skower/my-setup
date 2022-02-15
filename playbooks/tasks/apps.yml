@@ -1,7 +1,7 @@
 ---
 - name: Install apps
         apt:
-            - name: ["stow", "tmux", "vim", "i3", "tmux", "zsh"]
+            - name: ["stow", "tmux", "vim", "i3", "tmux", "zsh", "fzf"]
         tags:
              - install
              - apps
